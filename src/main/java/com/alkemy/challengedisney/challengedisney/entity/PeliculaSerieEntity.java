@@ -28,7 +28,7 @@ public class PeliculaSerieEntity {
 
     private int calificacion;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "genero_id", insertable = false, updatable = false)
     private GeneroEntity genero;
 
