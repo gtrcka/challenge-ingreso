@@ -1,10 +1,9 @@
-package com.alkemy.challengedisney.challengedisney.entity;
+package com.alkemy.challengedisney.ingreso.entity;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity//indica que es una entidad
 @Table(name="genero")//indica tabla con la que se relaciona la entidad

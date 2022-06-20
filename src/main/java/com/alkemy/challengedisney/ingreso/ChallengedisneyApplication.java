@@ -1,4 +1,4 @@
-package com.alkemy.challengedisney.challengedisney;
+package com.alkemy.challengedisney.ingreso;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

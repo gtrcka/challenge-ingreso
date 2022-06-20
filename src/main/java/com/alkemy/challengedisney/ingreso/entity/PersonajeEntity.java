@@ -1,4 +1,4 @@
-package com.alkemy.challengedisney.challengedisney.entity;
+package com.alkemy.challengedisney.ingreso.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,13 +21,13 @@ public class PersonajeEntity {
 
     private String nombre;
 
-    private int edad;
+    private Long edad;
 
-    private double peso;
+    private Double peso;
 
     private String historia;
 
-    @ManyToMany(mappedBy = "personajes", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "personajes")
     private List<PeliculaSerieEntity> peliculasSeries = new ArrayList<>();
 
 }

@@ -1,7 +1,9 @@
-package com.alkemy.challengedisney.challengedisney.entity;
+package com.alkemy.challengedisney.ingreso.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -13,6 +15,8 @@ import java.util.Set;
 @Table(name="peliculaserie")//indica tabla con la que se relaciona la entidad
 @Getter
 @Setter
+@SQLDelete(sql= "UPDATE peliculaserie SET deleted = true WHERE id=?")
+@Where(clause = "deleted=false")//filtro para traer aquellos registros que "no fueron" borrados
 public class PeliculaSerieEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -26,9 +30,11 @@ public class PeliculaSerieEntity {
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate fechaCreacion;
 
-    private int calificacion;
+    private boolean deleted = Boolean.FALSE;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private Long calificacion;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "genero_id", insertable = false, updatable = false)
     private GeneroEntity genero;
 
@@ -46,4 +52,7 @@ public class PeliculaSerieEntity {
             inverseJoinColumns = @JoinColumn(name = "personaje_id"))
     private Set<PersonajeEntity> personajes = new HashSet<>();
 
+    //Add and Remove paises
+    public void addPersonaje(PersonajeEntity pais){this.personajes.add(pais);}
+    public void removePersonaje(PersonajeEntity pais){this.personajes.remove(pais);}
 }
